@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="styles.css" />
+  <title>Codepen Top Pens</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet" type="text/css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+
+<body>
+
+
+  <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+  <div id="app">
+    <v-app>
+      <div class="text-xs-center">
+    <h1>Codepen Top Pens </h1>
+    <h2>These pens are all made with CSS and Javascript, I hope they inspire you to make something awesome!</h2>
+  </div>
+
+    </br>
+
+
+    <div class="cp_embed_wrapper"><iframe name="cp_embed_2" v-bind:src="currentURL" scrolling="no" frameborder="0" height="565" allowtransparency="true" allowfullscreen="true" allowpaymentrequest="true" title="Click and draw some flowers" class="cp_embed_iframe "
+        style="width: 100%; overflow:hidden; display:block;" id="cp_embed_apwMwM"></iframe></div>
+    <div v-if="loading">
+      <p>Loading...</p>
+    </div>
+    <div v-else>
+      <p>
+        </br>
+        <div class="text-xs-center">
+        <v-btn small color="primary" v-on:click="previous">Previous</v-btn>
+        <v-btn small color="primary" v-on:click="next">Next</v-btn>
+        <v-btn small color="primary" v-on:click="random">Random</v-btn>
+        <v-btn small color="primary" v-on:click="first">First</v-btn>
+        <v-btn small color="primary" v-on:click="last">Last</v-btn>
+      </div>
+
+
+      </p>
+
+
+      <h3>Collaborate and Discuss</h3>
+      <form v-on:submit.prevent="addComment">
+        <v-flex xs12 sm6>
+          <v-text-field placeholder="Name" v-model="addedName" label="Regular" single-line></v-text-field>
+        </v-flex>
+        <v-flex xs12 sm6>
+          <v-textarea v-model="addedComment" label="Discuss" append-icon="comment"></v-textarea>
+        </v-flex>
+
+
+        <v-btn fab dark color="indigo" type="submit">
+          <v-icon dark>add</v-icon>
+        </v-btn>
+
+      </form>
+      <h3>Comments</h3>
+      <div v-for="comment in comments[number]">
+        <hr>
+        <p><i>{{comment.time}}</i></p>
+        <p>{{comment.text}}</p>
+        <p><i>-- {{comment.author}}</i></p>
+
+      </div>
+      <div class="text-xs-center">
+      <a href="https://codepen.io/">Codepen.io</a>
+    </div>
+
+    </div>
+  </v-app>
+  </div>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="moment.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
