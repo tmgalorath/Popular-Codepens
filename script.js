@@ -1,4 +1,3 @@
-
 const moment = window.moment;
 let app = new Vue({
   el: '#app',
@@ -10,7 +9,6 @@ let app = new Vue({
     addedName: '',
     addedComment: '',
     comments: {},
-    ratings: {},
     current: {
       title: '',
       img: '',
@@ -20,12 +18,6 @@ let app = new Vue({
   },
   created() {
     this.xkcd();
-  },
-
-  computed: {
-    poops() {
-      return this.poops
-    },
   },
   watch: {
     id(newId, oldId) {
@@ -74,7 +66,7 @@ let app = new Vue({
       this.position = 0;
     },
     last() {
-      this.position = this.current.length;
+      this.position = this.current.length - 1;
     },
     getRandom(min, max) {
       min = Math.ceil(min);
@@ -82,15 +74,15 @@ let app = new Vue({
       return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum and minimum are inclusive
     },
     random() {
-      this.position = this.getRandom(0, this.current.length);
+      this.position = this.getRandom(0, this.current.length - 1);
     },
 
     addComment() {
-      if (!(this.number in this.comments))
+      if (!(this.position in this.comments))
 
-        Vue.set(app.comments, this.number, new Array);
+        Vue.set(app.comments, this.position, new Array);
       console.log();
-      this.comments[this.number].push({
+      this.comments[this.position].push({
         author: this.addedName,
         time: moment().format('llll'),
         text: this.addedComment
